@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071126">
+<meta name="description" content="Probability Lab — learn Class 12 probability through interactive experiments and Hinglish explanations.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<title>Probability Lab</title>
+<style>
+:root{--bg:#050b18;--panel:#0a1530;--panel2:#0d1c3b;--line:#1b3971;--blue:#3b82f6;--cyan:#32d7ef;--text:#edf4ff;--muted:#9fb4d9;--green:#27e2b2;--purple:#a78bfa;--red:#fb7185;--radius:20px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#152d61 0,transparent 40%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-bottom:80px}
+button,select{font:inherit}button{cursor:pointer;color:var(--text);border:1px solid var(--line);background:#0c1b38;border-radius:13px;padding:12px 14px;font-weight:650;transition:.15s}button:active{transform:scale(.98)}button.primary{border:0;background:linear-gradient(110deg,#2478f7,#6c5cff);box-shadow:0 7px 24px #254ee633}button.secondary{background:#0b1833}button:disabled{opacity:.45;cursor:not-allowed}
+header{padding:22px 18px 16px;max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;display:grid;place-items:center;border:1px solid #2f76ed;border-radius:15px;background:#0a2046;font-size:25px;box-shadow:0 0 28px #2274ff26}.brand h1{margin:0;font-size:clamp(20px,4vw,28px);letter-spacing:-.6px}.brand p{margin:1px 0 0;color:var(--muted);font-size:12px}.class-pill{font-size:11px;color:#b9d2ff;border:1px solid #244f9a;padding:7px 10px;border-radius:999px;white-space:nowrap}
+main{max-width:1100px;margin:auto;padding:0 14px}.hero{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:24px;padding:23px;background:linear-gradient(115deg,#0b1c3d,#09142a 65%,#101d46);margin-bottom:16px}.hero:after{content:"∑";position:absolute;right:20px;top:-32px;font-size:150px;color:#5c8cff0c;font-weight:900;pointer-events:none}.eyebrow{color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:1.7px;text-transform:uppercase}.hero h2{font-size:clamp(24px,5vw,37px);line-height:1.12;margin:8px 0}.hero p{color:var(--muted);max-width:580px;margin:9px 0 17px}.hero-actions{display:flex;flex-wrap:wrap;gap:9px}
+.tabs{display:flex;gap:7px;overflow-x:auto;padding:2px 0 12px;margin-bottom:4px}.tab{white-space:nowrap;padding:10px 14px;border-radius:999px;font-size:13px}.tab.active{background:#1649a5;border-color:#3985ff}
+.layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:15px}.panel{background:linear-gradient(145deg,#0a1530,#071126);border:1px solid var(--line);border-radius:var(--radius);padding:17px;min-width:0}.panel h3{font-size:17px;margin:0 0 13px;display:flex;align-items:center;gap:9px}.section-icon{width:32px;height:32px;border-radius:11px;background:#142e61;display:grid;place-items:center;font-size:17px}.muted{color:var(--muted)}.experiment-picker{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.pick{padding:12px 5px;text-align:center;min-height:88px}.pick .emoji{font-size:26px;display:block}.pick small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.pick.selected{border-color:#3884ff;background:#102650;box-shadow:inset 0 0 0 1px #3884ff}
+.stage{display:grid;grid-template-columns:1fr .9fr;gap:12px;align-items:center}.result-card{border:1px solid #1c376b;background:#08152d;border-radius:18px;min-height:170px;display:grid;place-items:center;text-align:center;padding:16px}.result-symbol{font-size:56px;line-height:1.15;filter:drop-shadow(0 8px 20px #3b82f644)}.result-word{font-size:23px;font-weight:800;margin-top:7px}.result-caption{font-size:12px;color:var(--muted)}.controls{display:grid;gap:8px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.stat{padding:12px 9px;border-radius:14px;background:#0a1a36;border:1px solid #1b3769}.stat span{font-size:11px;color:var(--muted);display:block}.stat strong{font-size:22px;display:block;margin-top:2px}.stat:nth-child(2) strong{color:var(--green)}.stat:nth-child(3) strong{color:var(--purple)}
+.meter{margin-top:15px}.meter-label{display:flex;justify-content:space-between;gap:10px;font-size:12px;margin-bottom:8px}.bar{height:9px;background:#182b52;border-radius:99px;overflow:hidden}.bar>div{height:100%;background:linear-gradient(90deg,#23c9bb,#4387ff);width:0;transition:width .25s}.theory-formula{background:#07142b;border:1px solid #2556a8;border-radius:15px;padding:16px;text-align:center;font:italic 19px Georgia,serif;margin:12px 0}.example{padding:12px;border:1px solid #1b3769;background:#091831;border-radius:13px;margin-top:9px}.example strong{display:block;font-size:12px;margin-bottom:4px;color:#bcd2ff}.example p{margin:0;font-size:13px}.note{border:1px solid #1b4e8e;background:#0b2042;border-radius:13px;padding:12px;color:#c5d8fb;font-size:12px;margin-top:12px}
+.full{margin-top:15px}.quiz-options{display:grid;gap:8px;margin:13px 0}.option{text-align:left;display:flex;align-items:center;gap:10px}.option .circle{width:20px;height:20px;border:1px solid #5374ac;border-radius:50%;display:grid;place-items:center;flex-shrink:0;font-size:12px}.option.correct{border-color:#16b990;background:#06372f}.option.wrong{border-color:#fb7185;background:#351827}.feedback{padding:12px;border-radius:13px;margin:10px 0;font-size:13px}.feedback.good{background:#06372f;border:1px solid #138d75}.feedback.bad{background:#351827;border:1px solid #a33b5b}.quiz-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.progress-dots{display:flex;gap:4px}.progress-dots i{width:20px;height:4px;background:#20345c;border-radius:99px}.progress-dots i.done{background:var(--green)}
+.chart-wrap{height:175px;position:relative;margin-top:10px}.chart-wrap canvas{width:100%;height:100%;display:block}.chart-legend{display:flex;gap:13px;font-size:12px;color:var(--muted)}.legend-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--green)}.legend-dot.purple{background:var(--purple)}.formula-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.formula{border:1px solid #1b3769;background:#091831;border-radius:13px;padding:12px}.formula b{display:block;font:italic 16px Georgia,serif;text-align:center;margin:5px 0}.formula small{color:var(--muted);font-size:11px}
+footer{text-align:center;color:#7189b6;font-size:11px;padding:25px 10px}.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#11254a;border:1px solid #2d5ba2;padding:10px 16px;border-radius:999px;box-shadow:0 10px 35px #0008;font-size:13px;z-index:10;display:none}.install-banner{display:none;margin-bottom:14px}
+@media(max-width:760px){header{padding:17px 14px}.class-pill{display:none}.layout{grid-template-columns:1fr}.hero{padding:20px}.panel{padding:14px}.stage{grid-template-columns:1fr .85fr}.result-card{min-height:160px}.stats{gap:6px}.stat{padding:10px 7px}.stat strong{font-size:20px}.full{margin-top:12px}}
+@media(max-width:380px){.stage{grid-template-columns:1fr}.result-card{min-height:135px}.result-symbol{font-size:46px}.experiment-picker{gap:5px}.pick{font-size:12px}.formula-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">⚛</div><div><h1>Probability Lab</h1><p>Explore · Experiment · Understand</p></div></div>
+  <div class="class-pill">CLASS 12 · UP BOARD</div>
+</header>
+<main>
+<section class="hero">
+  <div class="eyebrow">Your personal learning lab</div>
+  <h2>Probability ko <span style="color:#54a6ff">easy</span> banate hain.</h2>
+  <p>Sirf formula yaad mat kar — experiment kar, results dekh, aur concept ko samajh. Hinglish mein, apni speed par. ✨</p>
+  <div class="hero-actions"><button class="primary" onclick="document.querySelector('#lab').scrollIntoView({behavior:'smooth'})">🧪 Start experimenting</button><button class="secondary" onclick="document.querySelector('#practice').scrollIntoView({behavior:'smooth'})">🎯 Practice questions</button></div>
+</section>
+<div id="installBanner" class="panel install-banner"><b>📲 Install Probability Lab</b><p class="muted" style="margin:5px 0 10px;font-size:13px">Home screen par app ki tarah use kar.</p><button class="primary" id="installBtn">Install app</button></div>
+<div class="tabs" role="tablist"><button class="tab active" data-scroll="#lab">🧪 Simulator</button><button class="tab" data-scroll="#theory">📘 Theory</button><button class="tab" data-scroll="#practice">🧠 Practice</button><button class="tab" data-scroll="#statsPanel">📈 Live stats</button></div>
+<div class="layout" id="lab">
+<section class="panel">
+  <h3><span class="section-icon">🎲</span> Choose your experiment</h3>
+  <div class="experiment-picker">
+    <button class="pick selected" data-mode="coin"><span class="emoji">🪙</span>Coin toss<small>Head or Tail</small></button>
+    <button class="pick" data-mode="dice"><span class="emoji">🎲</span>Dice roll<small>Even or Odd</small></button>
+    <button class="pick" data-mode="cards"><span class="emoji">🃏</span>Draw a card<small>Ace or not</small></button>
+  </div>
+  <div class="stage">
+    <div class="result-card"><div><div class="result-symbol" id="resultSymbol">🪙</div><div class="result-word" id="resultWord">Ready?</div><div class="result-caption" id="resultCaption">Toss the coin to begin</div></div></div>
+    <div class="controls"><button class="primary" id="onceBtn">▶ Try once</button><button id="tenBtn">▤ Run 10 trials</button><button id="hundredBtn">⚡ Run 100 trials</button><button class="secondary" id="resetBtn">↺ Reset experiment</button></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><span>Total trials</span><strong id="total">0</strong></div>
+    <div class="stat"><span id="successLabel">Heads</span><strong id="successes">0</strong></div>
+    <div class="stat"><span id="failureLabel">Tails</span><strong id="failures">0</strong></div>
+  </div>
+  <div class="meter"><div class="meter-label"><span>Experimental probability (<span id="eventName">Head</span>)</span><b id="experimental">—</b></div><div class="bar"><div id="barFill"></div></div></div>
+  <div class="note" id="labNote">💡 Har toss independent hai — pichhla result agle toss ko decide nahi karta.</div>
+</section>
+<section class="panel" id="theory">
+  <h3><span class="section-icon">💡</span> Quick theory</h3>
+  <div class="muted" style="font-size:13px">Theoretical probability</div>
+  <div class="theory-formula">P(E) = Favourable outcomes ÷ Total equally likely outcomes</div>
+  <div id="theoryDetails"><div class="example"><strong>🪙 COIN TOSS</strong><p>P(Head) = 1/2 = 0.5 = 50%</p><p class="muted">Possible outcomes: Head, Tail</p></div></div>
+  <div class="example"><strong>Yaad rakh</strong><p>Probability hamesha 0 aur 1 ke beech hoti hai. Impossible event = 0, certain event = 1.</p></div>
+  <div class="note">📌 10 trials mein result 50% se alag ho sakta hai. Zyada trials par experimental probability aksar theoretical value ke kareeb aati hai.</div>
+</section>
+</div>
+<div class="layout full">
+<section class="panel" id="practice">
+  <div class="quiz-top"><h3><span class="section-icon">🎯</span> Practice questions</h3><div class="progress-dots" id="dots"><i class="done"></i><i></i><i></i><i></i><i></i></div></div>
+  <div class="muted" style="font-size:12px" id="qCounter">QUESTION 1 OF 5</div>
+  <h3 id="question" style="margin-top:10px;font-size:16px">Ek fair dice roll hota hai. 6 aane ki probability?</h3>
+  <div class="quiz-options" id="options"></div>
+  <div id="feedback" aria-live="polite"></div>
+  <button class="primary" id="checkBtn" style="width:100%">Check answer</button>
+  <button id="nextBtn" style="width:100%;margin-top:8px;display:none">Next question →</button>
+</section>
+<section class="panel" id="statsPanel">
+  <h3><span class="section-icon">📈</span> Live results</h3>
+  <div class="chart-legend"><span><i class="legend-dot"></i>Experimental</span><span><i class="legend-dot purple"></i>Theoretical</span></div>
+  <div class="chart-wrap"><canvas id="chart" aria-label="Experimental probability chart"></canvas></div>
+  <div class="example"><strong>Current experiment</strong><p id="chartSummary">Run a few trials to see your results here.</p></div>
+  <h3 style="margin-top:17px"><span class="section-icon">📐</span> Key formulas</h3>
+  <div class="formula-grid">
+    <div class="formula"><small>Basic probability</small><b>P(A) = n(A) / n(S)</b></div>
+    <div class="formula"><small>Complement</small><b>P(A′) = 1 − P(A)</b></div>
+    <div class="formula"><small>Independent events</small><b>P(A ∩ B) = P(A)P(B)</b></div>
+    <div class="formula"><small>Conditional probability</small><b>P(A|B) = P(A ∩ B)/P(B)</b></div>
+  </div>
+  <div class="note">⚠️ Conditional probability mein P(B) ≠ 0 hona chahiye. Independent aur mutually exclusive events same cheez nahi hain.</div>
+</section>
+</div>
+</main>
+<footer>Made for your Class 12 journey · Keep experimenting, keep learning ✦</footer>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const $=id=>document.getElementById(id);
+let mode='coin', total=0, success=0, failure=0, history=[], lastResult=null, selectedOption=null, answered=false, qIndex=0;
+const questions=[
+ {q:'Ek fair dice roll hota hai. 6 aane ki probability?',opts:['1/2','1/6','1/3','1'],correct:1,why:'Dice ke 6 equally likely outcomes hain aur 6 sirf ek outcome hai. Isliye P(6) = 1/6.'},
+ {q:'Ek fair coin toss kiya. Tail na aane ki probability?',opts:['0','1/4','1/2','1'],correct:2,why:'Tail na aane ka matlab Head aana. P(Head) = 1/2.'},
+ {q:'52 cards ke deck mein 4 Ace hain. Ace draw karne ki probability?',opts:['1/13','1/4','4/13','1/52'],correct:0,why:'P(Ace) = 4/52 = 1/13.'},
+ {q:'Agar P(A) = 0.35 hai, toh P(A′) kitna hoga?',opts:['0.35','0.65','1.35','0'],correct:1,why:'Complement rule: P(A′) = 1 − P(A) = 1 − 0.35 = 0.65.'},
+ {q:'A aur B independent hain; P(A)=1/2 aur P(B)=1/3. P(A ∩ B)?',opts:['5/6','1/6','1/5','2/3'],correct:1,why:'Independent events ke liye P(A ∩ B) = P(A) × P(B) = 1/2 × 1/3 = 1/6.'}
+];
+function theoretical(){return mode==='coin'?.5:mode==='dice'?.5:4/52}
+function isSuccess(r){return mode==='coin'?r==='Head':mode==='dice'?r%2===0:r==='A'}
+function doTrial(){let r;if(mode==='coin')r=Math.random()<.5?'Head':'Tail';else if(mode==='dice')r=1+Math.floor(Math.random()*6);else{const n=Math.floor(Math.random()*52);r=n<4?'A':['K','Q','J','10','9','8','7','6','5','4','3','2'][Math.floor((n-4)/4)%13]||'K';}
+ total++;if(isSuccess(r))success++;else failure++;lastResult=r;history.push({n:total,p:success/total});if(history.length>500)history.shift();}
+function run(n){for(let i=0;i<n;i++)doTrial();update();$('resultSymbol').textContent=mode==='coin'?(lastResult==='Head'?'🙂':'🌙'):mode==='dice'?'🎲':lastResult==='A'?'🂡':'🃏';$('resultWord').textContent=mode==='dice'?'Rolled '+lastResult:mode==='cards'?(lastResult==='A'?'Ace!':'Not an Ace'):lastResult;$('resultCaption').textContent=mode==='coin'?(lastResult==='Head'?'Head side':'Tail side'):mode==='dice'?(isSuccess(lastResult)?'Even number':'Odd number'):(lastResult==='A'?'Success: Ace drawn':'Not an Ace');}
+function update(){ $('total').textContent=total;$('successes').textContent=success;$('failures').textContent=failure;$('successLabel').textContent=mode==='coin'?'Heads':mode==='dice'?'Even':'Aces';$('failureLabel').textContent=mode==='coin'?'Tails':mode==='dice'?'Odd':'Other cards';$('eventName').textContent=mode==='coin'?'Head':mode==='dice'?'Even':'Ace';$('experimental').textContent=total?(success/total*100).toFixed(1)+'%':'—';$('barFill').style.width=total?(success/total*100)+'%':'0%';$('labNote').textContent=mode==='coin'?'💡 Har toss independent hai — pichhla result agle toss ko decide nahi karta.':mode==='dice'?'💡 Fair dice mein even numbers 2, 4, 6 hain — 3 favourable outcomes out of 6.':'💡 Standard 52-card deck mein 4 Ace hote hain — 4 favourable cards out of 52.';updateTheory();drawChart();$('chartSummary').textContent=total?`Trials: ${total} · Successes: ${success} · Experimental: ${(success/total*100).toFixed(1)}% · Theoretical: ${(theoretical()*100).toFixed(2)}%`:'Run a few trials to see your results here.';}
+function updateTheory(){let t=$('theoryDetails');if(mode==='coin')t.innerHTML='<div class="example"><strong>🪙 COIN TOSS</strong><p>P(Head) = 1/2 = 0.5 = 50%</p><p class="muted">Possible outcomes: Head, Tail</p></div>';else if(mode==='dice')t.innerHTML='<div class="example"><strong>🎲 DICE ROLL</strong><p>P(Even) = 3/6 = 1/2 = 50%</p><p class="muted">Even outcomes: 2, 4, 6</p></div>';else t.innerHTML='<div class="example"><strong>🃏 DRAW A CARD</strong><p>P(Ace) = 4/52 = 1/13 ≈ 7.69%</p><p class="muted">Standard deck: 52 cards, 4 Aces</p></div>';}
+function setMode(m){mode=m;total=success=failure=0;history=[];lastResult=null;document.querySelectorAll('.pick').forEach(b=>b.classList.toggle('selected',b.dataset.mode===m));$('resultSymbol').textContent=m==='coin'?'🪙':m==='dice'?'🎲':'🃏';$('resultWord').textContent='Ready?';$('resultCaption').textContent=m==='coin'?'Toss the coin to begin':m==='dice'?'Roll the dice to begin':'Draw a card to begin';update();toast(m==='coin'?'Coin toss selected':m==='dice'?'Dice roll selected':'Cards selected');}
+document.querySelectorAll('.pick').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+$('onceBtn').onclick=()=>run(1);$('tenBtn').onclick=()=>run(10);$('hundredBtn').onclick=()=>run(100);
+$('resetBtn').onclick=()=>{total=success=failure=0;history=[];lastResult=null;$('resultSymbol').textContent=mode==='coin'?'🪙':mode==='dice'?'🎲':'🃏';$('resultWord').textContent='Ready?';$('resultCaption').textContent='Experiment reset';update();toast('Experiment reset ho gaya');};
+function drawChart(){const c=$('chart'),ctx=c.getContext('2d'),rect=c.getBoundingClientRect(),dpr=window.devicePixelRatio||1;c.width=Math.max(1,rect.width*dpr);c.height=Math.max(1,rect.height*dpr);ctx.scale(dpr,dpr);const w=rect.width,h=rect.height,pad={l:29,r:8,t:12,b:23},cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;ctx.clearRect(0,0,w,h);ctx.font='10px system-ui';for(let i=0;i<=4;i++){let y=pad.t+ch*i/4;ctx.strokeStyle='#1c3157';ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();ctx.fillStyle='#8ea7d2';ctx.fillText((100-i*25)+'%',0,y+3);}ctx.strokeStyle='#a78bfa';ctx.setLineDash([5,4]);let ty=pad.t+ch*(1-theoretical());ctx.beginPath();ctx.moveTo(pad.l,ty);ctx.lineTo(w-pad.r,ty);ctx.stroke();ctx.setLineDash([]);if(history.length){ctx.strokeStyle='#27e2b2';ctx.lineWidth=2;ctx.beginPath();history.forEach((v,i)=>{let x=pad.l+(history.length===1?cw:i/(history.length-1)*cw),y=pad.t+ch*(1-v.p);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();}ctx.fillStyle='#8ea7d2';ctx.fillText('0',pad.l-3,h-5);ctx.fillText(String(total),Math.max(pad.l,w-pad.r-20),h-5);}
+window.addEventListener('resize',drawChart);
+function renderQuestion(){const q=questions[qIndex];$('qCounter').textContent=`QUESTION ${qIndex+1} OF ${questions.length}`;$('question').textContent=q.q;$('options').innerHTML='';selectedOption=null;answered=false;$('feedback').innerHTML='';$('checkBtn').style.display='block';$('checkBtn').disabled=false;$('nextBtn').style.display='none';$('checkBtn').textContent='Check answer';$('dots').innerHTML=questions.map((_,i)=>`<i class="${i<=qIndex?'done':''}"></i>`).join('');q.opts.forEach((opt,i)=>{const b=document.createElement('button');b.className='option';b.innerHTML=`<span class="circle">${String.fromCharCode(65+i)}</span><span>${opt}</span>`;b.onclick=()=>{if(answered)return;selectedOption=i;document.querySelectorAll('.option').forEach((x,j)=>x.style.borderColor=j===i?'#4b8bff':'');};$('options').appendChild(b);});}
+$('checkBtn').onclick=()=>{if(selectedOption===null){toast('Pehle ek option choose kar!');return;}answered=true;const q=questions[qIndex],correct=selectedOption===q.correct;document.querySelectorAll('.option').forEach((b,i)=>{b.disabled=true;if(i===q.correct)b.classList.add('correct');else if(i===selectedOption)b.classList.add('wrong');});$('feedback').innerHTML=`<div class="feedback ${correct?'good':'bad'}"><b>${correct?'✓ Bilkul sahi! 🎉':'Not quite — answer samajh le.'}</b><br>Correct answer: <b>${q.opts[q.correct]}</b><br>${q.why}</div>`;$('checkBtn').style.display='none';$('nextBtn').style.display='block';$('nextBtn').textContent=qIndex===questions.length-1?'Practice again ↻':'Next question →';};
+$('nextBtn').onclick=()=>{qIndex=(qIndex+1)%questions.length;renderQuestion();};
+document.querySelectorAll('[data-scroll]').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.querySelector(b.dataset.scroll).scrollIntoView({behavior:'smooth',block:'start'});});
+let toastTimer;function toast(msg){const t=$('toast');t.textContent=msg;t.style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.style.display='none',1800);}
+renderQuestion();update();
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+let deferredPrompt=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;$('installBanner').style.display='block';});$('installBtn').onclick=async()=>{if(!deferredPrompt){toast('Browser menu se “Add to Home screen” try karo.');return;}deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;$('installBanner').style.display='none';};
+</script>
+</body>
+</html>

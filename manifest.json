@@ -1,0 +1,18 @@
+{
+  "name": "Probability Lab \u2014 Class 12",
+  "short_name": "Probability Lab",
+  "description": "Interactive Hinglish probability simulator for Class 12.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#050b18",
+  "theme_color": "#071126",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
